@@ -1,0 +1,11 @@
+<h1> Team Members </h1>
+<h2> You have {{ members_list|length }} team members. </h2>
+{% if members_list %}
+    <ul>
+    {% for member in members_list %}
+        <li><a href="{% url 'teams:edit' member.id %}">{{ member.first_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No team members.</p>
+{% endif %}

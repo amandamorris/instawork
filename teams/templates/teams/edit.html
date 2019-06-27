@@ -1,0 +1,26 @@
+<h1> Edit Team Member </h1>
+<h3> Edit contact info, location, and role. </h3>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'teams:save' member.id %}" method="post">
+    {% csrf_token %}
+
+    <h2> Info </h2>
+    <input type="text" name="first_name" id="first_name{{member.id}}"
+        value="{{ member.first_name }}">
+    <br>
+    <input type="text" name="last_name" id="last_name{{member.id}}"
+        value="{{ member.last_name }}">
+    <br>
+    <input type="text" name="email" id="email{{member.id}}"
+        value="{{ member.email }}">
+    <br>
+    <input type="text" name="phone_number" id="phone_number{{member.id}}"
+        value="{{ member.phone_number }}">
+
+    <h2> Role </h2>
+    <input type="radio" name="role" value="regular"> Regular - Can't delete members <br>
+    <input type="radio" name="role" value="admin"> Admin - Can delete members <br>
+    <br>
+    <input type="submit" value="Save">
+</form>
