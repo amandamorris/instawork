@@ -16,30 +16,22 @@ class IndexView(generic.ListView):
 
 class AddView(generic.CreateView):
     model = Member
+    fields = ['first_name', 'last_name', 'email', 'phone_number', 'role']
     template_name = 'teams/add.html'
+
+    def get_success_url(self):
+            return reverse('teams:index')
 
 class UpdateView(generic.UpdateView):
     model = Member
     fields = ['first_name', 'last_name', 'email', 'phone_number', 'role']
     template_name = 'teams/edit.html'
 
-# def index(request):
-#     latest_members_list = Member.objects.order_by('-created')[:10]
-#     context = {'latest_members_list': latest_members_list,}
-#     return render(request, 'teams/index.html', context)
-
-# def add(request):
-#     return HttpResponse("You're going to add a member")
-
-# def edit(request, member_id):
-#     member = get_object_or_404(Member, pk=member_id)
-#     return render(request, 'teams/edit.html', {'member': member})
 
 def delete(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
     member.delete()
-    return HttpResponseRedirect(reverse('teams/index.html'))
-
+    return HttpResponseRedirect(reverse('teams:index'))
 
 def save(request, member_id):
     member = get_object_or_404(Member, pk=member_id)

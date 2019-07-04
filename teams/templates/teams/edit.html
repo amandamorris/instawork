@@ -19,8 +19,13 @@
         value="{{ member.phone_number }}">
 
     <h2> Role </h2>
-    <input type="radio" name="role" value="regular"> Regular - Can't delete members <br>
+    <input type="radio" name="role" value="regular" >
+        Regular - Can't delete members <br>
     <input type="radio" name="role" value="admin"> Admin - Can delete members <br>
     <br>
     <input type="submit" value="Save">
+</form>
+<form action="{% url 'teams:delete' member.id %}" method="POST">
+    {% csrf_token %}
+    <input id="submit" type="submit" value="Delete" />
 </form>

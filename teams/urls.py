@@ -12,6 +12,7 @@ urlpatterns = [
     path('<int:pk>/edit/', views.UpdateView.as_view(), name='edit'),
 
     path('<int:member_id>/save/', views.save, name='save'),
-    # path('<int:pk>/delete/', views.DeleteView.as_view(), name='delete'),
+
+    path('<int:member_id>/delete/', views.delete, name='delete'),
 
 ]
